@@ -58,6 +58,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,6 +79,7 @@ body {
     color: var(--text-primary);
     background: var(--bg-primary);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* ========================================
@@ -345,7 +347,7 @@ a:hover {
     font-size: 1.25rem;
     color: var(--accent-orange);
     margin-bottom: var(--spacing-lg);
-    min-height: 1.5em;
+    line-height: 1.5;
 }
 
 .hero-description {
@@ -490,6 +492,16 @@ a:hover {
 .stat-card .stat-label {
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+/* Where Your Sats Go rows */
+.sats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border);
+    gap: var(--spacing-md);
 }
 
 /* ========================================
@@ -734,6 +746,23 @@ a:hover {
     font-size: 0.85rem;
 }
 
+.footer-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+}
+
+.footer-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
 /* ========================================
    TYPING ANIMATION
    ======================================== */
@@ -902,47 +931,6 @@ a:hover {
 }
 
 /* ========================================
-   PHOTO GALLERY
-   ======================================== */
-
-.photo-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-xl);
-}
-
-.photo-gallery img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    transition: all var(--transition-fast);
-}
-
-.photo-gallery img:hover {
-    border-color: var(--accent-orange);
-    transform: scale(1.02);
-}
-
-@media (max-width: 768px) {
-    .photo-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .photo-gallery img {
-        height: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    .photo-gallery {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ========================================
    RESPONSIVE ADJUSTMENTS
    ======================================== */
 
@@ -958,6 +946,13 @@ a:hover {
         max-width: 280px;
     }
 
+    .hero-tagline {
+        min-height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .hero-stat-value {
         font-size: 2rem;
     }
@@ -969,6 +964,12 @@ a:hover {
     .live-banner {
         flex-direction: column;
         align-items: flex-start;
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .live-stats {
+        gap: var(--spacing-lg);
     }
 
     .section {
@@ -977,6 +978,10 @@ a:hover {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
     .hero-cta {
         flex-direction: column;
         width: 100%;
@@ -985,5 +990,42 @@ a:hover {
     .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .footer-toggle {
+        display: flex;
+        order: -1;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md) 0;
+        display: none;
+        width: 100%;
+    }
+
+    .footer-links.active {
+        display: flex;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .sats-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .sats-row span:first-child {
+        font-weight: 500;
     }
 }

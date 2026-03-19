@@ -23,7 +23,7 @@
         .guide-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
+            padding: calc(var(--spacing-2xl) + 80px) var(--spacing-lg) var(--spacing-2xl);
         }
 
         .guide-header {
@@ -147,7 +147,7 @@
 
         @media (max-width: 768px) {
             .guide-container {
-                padding: var(--spacing-xl) var(--spacing-md);
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
             }
 
             .guide-content {
@@ -337,6 +337,11 @@
     <footer class="footer" style="margin-top: var(--spacing-2xl);">
         <div class="container">
             <div class="footer-content">
+                <button class="footer-toggle" aria-label="Toggle footer navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="footer-links">
                     <li><a href="index.html#learn">Learn</a></li>
                     <li><a href="index.html#merchants">Merchants</a></li>

@@ -13,3 +13,8 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Claude Code
+.claude/
+CLAUDE.md
+BRIEF.md

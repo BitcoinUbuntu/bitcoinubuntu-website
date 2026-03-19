@@ -23,7 +23,7 @@
         .guide-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
+            padding: calc(var(--spacing-2xl) + 80px) var(--spacing-lg) var(--spacing-2xl);
         }
 
         .guide-header {
@@ -83,7 +83,7 @@
         }
 
         .step-image {
-            width: 100%;
+            max-width: 100%;
             height: auto;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border);
@@ -163,7 +163,7 @@
 
         @media (max-width: 768px) {
             .guide-container {
-                padding: var(--spacing-xl) var(--spacing-md);
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
             }
 
             .guide-content {
@@ -248,45 +248,45 @@
 
             <h3><span style="color: var(--text-primary);">A1:</span> Add a Listing</h3>
             <p>From your dashboard, click the <strong>"Add a listing"</strong> button.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-A1-small.png" alt="Step A1: Click Add a listing" class="step-image">
+            <img src="assets/images/bec-guide/Step-A1-small.png" alt="Step A1: Click Add a listing" class="step-image">
 
             <h3><span style="color: var(--text-primary);">A2:</span> Select Circular Economy</h3>
             <p>Choose <strong>"Circular Economy"</strong> as your listing type.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-A2-small.png" alt="Step A2: Select Circular Economy" class="step-image">
+            <img src="assets/images/bec-guide/Step-A2-small.png" alt="Step A2: Select Circular Economy" class="step-image">
 
             <h3><span style="color: var(--text-primary);">A3:</span> Complete Listing Details</h3>
             <p>Fill in your project details including name, description, location, and other relevant information.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-A3-small.png" alt="Step A3: Fill in listing details" class="step-image">
+            <img src="assets/images/bec-guide/Step-A3-small.png" alt="Step A3: Fill in listing details" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step B:</span> BtcMap URL Configuration</h2>
             <p>Connect your listing to the merchant locations on BtcMap to show where Bitcoin is being used in your area.</p>
 
             <h3><span style="color: var(--text-primary);">B1:</span> Visit BtcMap</h3>
             <p>Go to <a href="https://btcmap.org" target="_blank" style="color: var(--accent-blue);">btcmap.org</a> and open the map interface.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-B1-small-1.png" alt="Step B1: Open BtcMap" class="step-image">
+            <img src="assets/images/bec-guide/Step-B1-small.png" alt="Step B1: Open BtcMap" class="step-image">
 
             <h3><span style="color: var(--text-primary);">B2:</span> Locate Your Project Area</h3>
             <p>Navigate to your project's geographic area and center the map view so all relevant merchant pins are visible. Copy the URL from your browser's address bar.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-B2-small-2.png" alt="Step B2: Center map and copy URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-B2-small.png" alt="Step B2: Center map and copy URL" class="step-image">
 
             <h3><span style="color: var(--text-primary);">B3:</span> Paste BtcMap URL</h3>
             <p>Return to your confederation listing and paste the BtcMap URL into the appropriate field.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-B3-small-1.png" alt="Step B3: Paste BtcMap URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-B3-small.png" alt="Step B3: Paste BtcMap URL" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step C:</span> BTCPay Server Account Creation</h2>
             <p>Set up your BTCPay Server instance to manage Bitcoin donations. BTCPay is a self-hosted, open-source payment processor.</p>
 
             <h3><span style="color: var(--text-primary);">C1:</span> Sign Into BTCPay</h3>
             <p>Go to <a href="https://btcpay.satcrowd.com" target="_blank" style="color: var(--accent-blue);">btcpay.satcrowd.com</a> and sign into your account (or create one if you haven't already).</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-C1-small.png" alt="Step C1: Sign into BTCPay Server" class="step-image">
+            <img src="assets/images/bec-guide/Step-C1-small.png" alt="Step C1: Sign into BTCPay Server" class="step-image">
 
             <h3><span style="color: var(--text-primary);">C2:</span> Create a Store</h3>
             <p>Create a new store with an appropriate name for your project. <strong>Important:</strong> Keep the default currency settings.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-C2-small.png" alt="Step C2: Create new store" class="step-image">
+            <img src="assets/images/bec-guide/Step-C2-small.png" alt="Step C2: Create new store" class="step-image">
 
             <h3><span style="color: var(--text-primary);">C3:</span> Set Up Wallet</h3>
             <p>Click <strong>"Set up a wallet"</strong> to begin connecting your Bitcoin wallet.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-C3-small.png" alt="Step C3: Click Set up a wallet" class="step-image">
+            <img src="assets/images/bec-guide/Step-C3-small.png" alt="Step C3: Click Set up a wallet" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step D:</span> Wallet Connection Process</h2>
             <p>Connect your self-custodial on-chain wallet to BTCPay Server using your extended public key (xpub/zpub).</p>
@@ -296,137 +296,137 @@
             </div>
 
             <h3><span style="color: var(--text-primary);">D1:</span> Select "Connect an existing wallet"</h3>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D1-small.png" alt="Step D1: Connect existing wallet" class="step-image">
+            <img src="assets/images/bec-guide/Step-D1-small.png" alt="Step D1: Connect existing wallet" class="step-image">
 
             <h3><span style="color: var(--text-primary);">D2:</span> Enter Extended Public Key</h3>
             <p>Choose <strong>"Enter extended public key"</strong> option.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D2-small.png" alt="Step D2: Enter extended public key option" class="step-image">
+            <img src="assets/images/bec-guide/Step-D2-small.png" alt="Step D2: Enter extended public key option" class="step-image">
 
             <h3><span style="color: var(--text-primary);">D3:</span> Paste Your xpub/zpub</h3>
             <p>Paste your extended public key from your self-custodial wallet.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D3-small.png" alt="Step D3: Paste extended public key" class="step-image">
+            <img src="assets/images/bec-guide/Step-D3-small.png" alt="Step D3: Paste extended public key" class="step-image">
 
             <h3><span style="color: var(--text-primary);">D4:</span> Verify Address Generation</h3>
             <p>Verify that the addresses generated by BTCPay match those in your wallet.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D4-small.png" alt="Step D4: Verify addresses match" class="step-image">
+            <img src="assets/images/bec-guide/Step-D4-small.png" alt="Step D4: Verify addresses match" class="step-image">
 
             <h3><span style="color: var(--text-primary);">D5:</span> Continue to Lightning Settings</h3>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D5-small.png" alt="Step D5: Continue to Lightning" class="step-image">
+            <img src="assets/images/bec-guide/Step-D5-small.png" alt="Step D5: Continue to Lightning" class="step-image">
 
             <h3><span style="color: var(--text-primary);">D6:</span> Access Lightning Wallet Settings</h3>
             <p>From the BTCPay menu, navigate to the Lightning wallet settings.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-D6-small.png" alt="Step D6: Lightning settings menu" class="step-image">
+            <img src="assets/images/bec-guide/Step-D6-small.png" alt="Step D6: Lightning settings menu" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step E:</span> Blink Integration</h2>
             <p>Connect your Blink wallet to BTCPay Server to accept Lightning Network donations.</p>
 
             <h3><span style="color: var(--text-primary);">E1:</span> Sign Into Blink Dashboard</h3>
             <p>Visit the <a href="https://dashboard.blink.sv/" target="_blank" style="color: var(--accent-blue);">Blink dashboard</a> and sign into your account.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E1-small.png" alt="Step E1: Blink dashboard login" class="step-image">
+            <img src="assets/images/bec-guide/Step-E1-small.png" alt="Step E1: Blink dashboard login" class="step-image">
 
             <h3><span style="color: var(--text-primary);">E2:</span> Access API Keys</h3>
             <p>Navigate to <strong>API Keys</strong> in the Blink dashboard.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E2-small.png" alt="Step E2: Navigate to API Keys" class="step-image">
+            <img src="assets/images/bec-guide/Step-E2-small.png" alt="Step E2: Navigate to API Keys" class="step-image">
 
             <h3><span style="color: var(--text-primary);">E3:</span> Create New API Key</h3>
             <p>Create a new API key.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E3-small.png" alt="Step E3: Create new API key" class="step-image">
+            <img src="assets/images/bec-guide/Step-E3-small.png" alt="Step E3: Create new API key" class="step-image">
 
             <h3><span style="color: var(--text-primary);">E4:</span> Uncheck Write Permission</h3>
             <p><strong>Important:</strong> Uncheck the "Write" permission – read-only access is sufficient and more secure.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E4-small.png" alt="Step E4: Uncheck write permission" class="step-image">
+            <img src="assets/images/bec-guide/Step-E4-small.png" alt="Step E4: Uncheck write permission" class="step-image">
 
             <h3><span style="color: var(--text-primary);">E5:</span> Copy BTCPay Connection String</h3>
             <p>Copy the BTCPay connection string provided by Blink.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E5-small.png" alt="Step E5: Copy connection string" class="step-image">
+            <img src="assets/images/bec-guide/Step-E5-small.png" alt="Step E5: Copy connection string" class="step-image">
 
             <h3><span style="color: var(--text-primary);">E6:</span> Paste and Test Connection</h3>
             <p>Return to your BTCPay Server Lightning settings and paste the connection string. Test the connection to ensure BTCPay can communicate with your Blink wallet.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-E6-small.png" alt="Step E6: Paste and test connection" class="step-image">
+            <img src="assets/images/bec-guide/Step-E6-small.png" alt="Step E6: Paste and test connection" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step F:</span> Crowdfund Plugin Setup</h2>
             <p>Enable the Crowdfund plugin in BTCPay Server to create a donation page.</p>
 
             <h3><span style="color: var(--text-primary);">F1:</span> Save Lightning Settings</h3>
             <p>Click <strong>Save</strong> to confirm your Lightning wallet connection.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-F1-small.png" alt="Step F1: Save Lightning settings" class="step-image">
+            <img src="assets/images/bec-guide/Step-F1-small.png" alt="Step F1: Save Lightning settings" class="step-image">
 
             <h3><span style="color: var(--text-primary);">F2:</span> Verify Wallet Connections</h3>
             <p>Verify that both your on-chain wallet and Lightning wallet show green connection indicators.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-F2-small.png" alt="Step F2: Both wallets connected" class="step-image">
+            <img src="assets/images/bec-guide/Step-F2-small.png" alt="Step F2: Both wallets connected" class="step-image">
 
             <h3><span style="color: var(--text-primary);">F3:</span> Enable Crowdfund Plugin</h3>
             <p>Under <strong>Plugins</strong>, select <strong>Crowdfund</strong>, give it an appropriate name, and create it.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-F3-small.png" alt="Step F3: Create Crowdfund plugin" class="step-image">
+            <img src="assets/images/bec-guide/Step-F3-small.png" alt="Step F3: Create Crowdfund plugin" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step G:</span> Crowdfund Campaign Configuration</h2>
             <p>Set up your crowdfund campaign to accept custom donation amounts.</p>
 
             <h3><span style="color: var(--text-primary);">G1:</span> Fill Campaign Details</h3>
             <p>Complete the campaign information including title and description.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G1-small.png" alt="Step G1: Fill campaign details" class="step-image">
+            <img src="assets/images/bec-guide/Step-G1-small.png" alt="Step G1: Fill campaign details" class="step-image">
 
             <h3><span style="color: var(--text-primary);">G2:</span> Add a New Perk</h3>
             <p>Under <strong>Perks</strong>, add a new item.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G2-small.png" alt="Step G2: Add perk item" class="step-image">
+            <img src="assets/images/bec-guide/Step-G2-small.png" alt="Step G2: Add perk item" class="step-image">
 
             <h3><span style="color: var(--text-primary);">G3:</span> Create Custom Amount Item</h3>
             <p><strong>Critical:</strong> Create a custom item with the ID <strong>"custom amount"</strong> (exactly as written) with a minimum of <strong>0.00000001 BTC</strong>.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G3-small.png" alt="Step G3: Custom amount with minimum" class="step-image">
+            <img src="assets/images/bec-guide/Step-G3-small.png" alt="Step G3: Custom amount with minimum" class="step-image">
 
             <h3><span style="color: var(--text-primary);">G4:</span> Save Campaign Settings</h3>
             <p>Save your campaign settings.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G4-small.png" alt="Step G4: Save settings" class="step-image">
+            <img src="assets/images/bec-guide/Step-G4-small.png" alt="Step G4: Save settings" class="step-image">
 
             <h3><span style="color: var(--text-primary);">G5:</span> View Crowdfund Page</h3>
             <p>Click <strong>View</strong> to see your crowdfund page.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G5-small.png" alt="Step G5: View page" class="step-image">
+            <img src="assets/images/bec-guide/Step-G5-small.png" alt="Step G5: View page" class="step-image">
 
             <h3><span style="color: var(--text-primary);">G6:</span> Copy Campaign URL</h3>
             <p>Copy the full URL of your crowdfund campaign page.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-G6-small.png" alt="Step G6: Copy crowdfund URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-G6-small.png" alt="Step G6: Copy crowdfund URL" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step H:</span> Donate Tab and QR Code Setup</h2>
             <p>Configure the donation settings in your confederation listing.</p>
 
             <h3><span style="color: var(--text-primary);">H1:</span> Paste Crowdfund URL</h3>
             <p>Return to your confederation listing and paste the Crowdfund URL into the designated field.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H1-small.png" alt="Step H1: Paste Crowdfund URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-H1-small.png" alt="Step H1: Paste Crowdfund URL" class="step-image">
 
             <h3><span style="color: var(--text-primary);">H2:</span> Open BTCPay Settings</h3>
             <p>Go back to BTCPay Server and click on <strong>Settings</strong>.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H2-small.png" alt="Step H2: Open Settings" class="step-image">
+            <img src="assets/images/bec-guide/Step-H2-small.png" alt="Step H2: Open Settings" class="step-image">
 
             <h3><span style="color: var(--text-primary);">H3:</span> Copy Your Store ID</h3>
             <p>Copy your Store ID from the BTCPay settings.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H3-small.png" alt="Step H3: Copy Store ID" class="step-image">
+            <img src="assets/images/bec-guide/Step-H3-small.png" alt="Step H3: Copy Store ID" class="step-image">
 
             <h3><span style="color: var(--text-primary);">H4:</span> Paste Store ID</h3>
             <p>Paste the Store ID into your confederation listing.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H4-small.png" alt="Step H4: Paste Store ID" class="step-image">
+            <img src="assets/images/bec-guide/Step-H4-small.png" alt="Step H4: Paste Store ID" class="step-image">
 
             <h3><span style="color: var(--text-primary);">H5:</span> Enter BTC Donation Addresses</h3>
             <p>Enter your BTC donation receive addresses from your self-custodial wallet.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H5-small.png" alt="Step H5: Enter BTC addresses" class="step-image">
+            <img src="assets/images/bec-guide/Step-H5-small.png" alt="Step H5: Enter BTC addresses" class="step-image">
 
             <h3><span style="color: var(--text-primary);">H6:</span> Add Temporary X URL Placeholder</h3>
             <p>Add your X (Twitter) profile URL as a temporary placeholder for the verification tweet (you'll update this later).</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-H6-small.png" alt="Step H6: Temporary X URL placeholder" class="step-image">
+            <img src="assets/images/bec-guide/Step-H6-small.png" alt="Step H6: Temporary X URL placeholder" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step I:</span> BTCPay Checkout Appearance Settings</h2>
             <p>Configure the checkout experience to prioritize Lightning payments for small amounts.</p>
 
             <h3><span style="color: var(--text-primary);">I1:</span> Navigate to Checkout Appearance</h3>
             <p>In BTCPay Settings, go to <strong>Checkout Appearance</strong>.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-K1-small.png" alt="Step I1: Checkout Appearance settings" class="step-image">
+            <img src="assets/images/bec-guide/Step-K1-small.png" alt="Step I1: Checkout Appearance settings" class="step-image">
 
             <h3><span style="color: var(--text-primary);">I2:</span> Set Default Payment Method</h3>
             <p>Set the default payment method to <strong>BTC-LN</strong> (Lightning Network).</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-K2-small.png" alt="Step I2: Default to Lightning" class="step-image">
+            <img src="assets/images/bec-guide/Step-K2-small.png" alt="Step I2: Default to Lightning" class="step-image">
 
             <h3><span style="color: var(--text-primary);">I3:</span> Configure On-Chain Threshold</h3>
             <p>For BTC-CHAIN, set it to <strong>"Greater than"</strong> with a value of <strong>0.00021 BTC</strong>. This means on-chain payments will only be offered for amounts above this threshold, with Lightning used for smaller amounts.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-K3-small.png" alt="Step I3: On-chain threshold setting" class="step-image">
+            <img src="assets/images/bec-guide/Step-K3-small.png" alt="Step I3: On-chain threshold setting" class="step-image">
 
             <div class="info-box">
                 <p><strong>Why this matters:</strong> Lightning is ideal for small, instant payments with minimal fees. On-chain is better for larger amounts where security and finality are paramount.</p>
@@ -437,26 +437,26 @@
 
             <h3><span style="color: var(--text-primary);">J1:</span> Preview Your Listing</h3>
             <p>Click <strong>Preview</strong> to see how your listing will appear to visitors.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-I1-small.png" alt="Step J1: Preview listing" class="step-image">
+            <img src="assets/images/bec-guide/Step-I1-small.png" alt="Step J1: Preview listing" class="step-image">
 
             <h3><span style="color: var(--text-primary);">J2:</span> Review All Details</h3>
             <p>Carefully review all information, donation addresses, and links to ensure everything is correct.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-I2-small.png" alt="Step J2: Review details" class="step-image">
+            <img src="assets/images/bec-guide/Step-I2-small.png" alt="Step J2: Review details" class="step-image">
 
             <h3><span style="color: var(--text-primary);">J3:</span> Submit for Approval</h3>
             <p>When everything looks correct, submit your listing for approval.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-I3-small.png" alt="Step J3: Submit listing" class="step-image">
+            <img src="assets/images/bec-guide/Step-I3-small.png" alt="Step J3: Submit listing" class="step-image">
 
             <h2><span style="color: var(--text-primary);">Step K:</span> Final Verification (After Approval)</h2>
             <p>Once your listing is approved, you must create a public verification post on X (Twitter) to prove you control the donation addresses.</p>
 
             <h3><span style="color: var(--text-primary);">K1:</span> Wait for Approval</h3>
             <p>After submission, wait for the Bitcoin Confederation team to review and approve your listing. You will receive a notification when approved.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J1-small.png" alt="Step K1: Awaiting approval" class="step-image">
+            <img src="assets/images/bec-guide/Step-J1-small.png" alt="Step K1: Awaiting approval" class="step-image">
 
             <h3><span style="color: var(--text-primary);">K2:</span> Go to X (Twitter)</h3>
             <p>Once approved, open X (Twitter) and create a new post.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J2-small.png" alt="Step K2: Create X post" class="step-image">
+            <img src="assets/images/bec-guide/Step-J2-small.png" alt="Step K2: Create X post" class="step-image">
 
             <h3><span style="color: var(--text-primary);">K3:</span> Write Your Verification Post</h3>
             <p>In your post, you must include these three items exactly:</p>
@@ -466,25 +466,25 @@
                 <li><strong>Your Lightning address</strong> – Example: yourproject@blink.sv or your Lightning invoice address</li>
             </ol>
             <p><strong>Example post:</strong></p>
-            <p style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 14px;">
+            <p style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 14px; word-break: break-word; overflow-wrap: break-word;">
                 Our project is now on Bitcoin Confederation!<br><br>
                 Profile: https://bitcoinconfederation.org/listing/your-project<br>
                 On-chain: bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh<br>
                 Lightning: yourproject@blink.sv
             </p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J3-small.png" alt="Step K3: Write verification post with addresses" class="step-image">
+            <img src="assets/images/bec-guide/Step-J3-small.png" alt="Step K3: Write verification post with addresses" class="step-image">
 
             <h3><span style="color: var(--text-primary);">K4:</span> Post and Copy the Link</h3>
             <p>Click <strong>Post</strong> to publish. After posting, click on the post to open it. Copy the full URL from your browser address bar. The URL should look like: https://x.com/YourUsername/status/1234567890</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J4-small.png" alt="Step K4: Copy tweet URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-J4-small.png" alt="Step K4: Copy tweet URL" class="step-image">
 
             <h3><span style="color: var(--text-primary);">K5:</span> Return to Your Listing</h3>
             <p>Go back to bitcoinconfederation.org, log in, and click <strong>Edit</strong> on your listing.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J5-small.png" alt="Step K5: Edit listing" class="step-image">
+            <img src="assets/images/bec-guide/Step-J5-small.png" alt="Step K5: Edit listing" class="step-image">
 
             <h3><span style="color: var(--text-primary);">K6:</span> Add the Verification Link</h3>
             <p>Find the field where you previously entered your X profile URL (the temporary placeholder). Delete that placeholder and paste the full URL to your verification post. Click <strong>Save</strong> to finish.</p>
-            <img src="https://bitcoinubuntu.org/wp-content/uploads/Step-J6-small.png" alt="Step K6: Update with tweet URL" class="step-image">
+            <img src="assets/images/bec-guide/Step-J6-small.png" alt="Step K6: Update with tweet URL" class="step-image">
 
             <div class="success-box">
                 <p><strong>Congratulations!</strong> Your circular economy project is now fully set up on the Bitcoin Confederation with the ability to accept Bitcoin donations via Lightning and on-chain.</p>
@@ -510,6 +510,11 @@
     <footer class="footer" style="margin-top: var(--spacing-2xl);">
         <div class="container">
             <div class="footer-content">
+                <button class="footer-toggle" aria-label="Toggle footer navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="footer-links">
                     <li><a href="index.html#learn">Learn</a></li>
                     <li><a href="index.html#merchants">Merchants</a></li>

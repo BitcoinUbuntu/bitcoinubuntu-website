@@ -10,15 +10,21 @@ const CONFIG = {
     powbotStatsUrl: 'https://bitcoinubuntu.github.io/powbot-stats/stats.json',
     typingSpeed: 60,
     taglines: [
-        'I am because we are.',
-        'Don\'t trust, verify.',
-        'Stay humble, stack sats.',
-        'Bitcoin education for Africa.',
-        'Not your keys, not your coins.',
-        'Financial sovereignty is a human right.',
-        'Fix the money, fix the world.',
-        'Orange-pilling the continent.',
         'Study Bitcoin.',
+        'Peer-to-Peer.',
+        'Stay humble, stack sats.',
+        'Freedom money.',
+        'Not your keys, not your coins.',
+        'Africa\'s Bitcoin revolution.',
+        'Don\'t trust, verify.',
+        'Education is key.',
+        'Run your own node.',
+        'Grassroots Bitcoin adoption.',
+        'Fix the money, fix the world.',
+        'Free Bitcoin education.',
+        'Sound money for all.',
+        'Orange-pilling the continent.',
+        'Tick tock, next block.',
     ]
 };
 
@@ -116,23 +122,7 @@ async function fetchPowBotStats() {
     }
 }
 
-function updateHeroStats(stats) {
-    if (!stats) return;
-
-    const countriesEl = document.getElementById('stat-countries');
-    const projectsEl = document.getElementById('stat-projects');
-    const postsEl = document.getElementById('stat-posts');
-
-    if (countriesEl) {
-        countriesEl.textContent = stats.countries?.length || '--';
-    }
-    if (projectsEl) {
-        projectsEl.textContent = stats.top_projects?.length || '--';
-    }
-    if (postsEl) {
-        postsEl.textContent = formatNumber(stats.reviewer?.approved || 0);
-    }
-}
+// Hero stats are now static - no need to update from API
 
 function updateLiveStats(stats) {
     if (!stats) return;
@@ -205,6 +195,24 @@ function initMobileNav() {
     });
 }
 
+function initMobileFooter() {
+    const toggle = document.querySelector('.footer-toggle');
+    const links = document.querySelector('.footer-links');
+
+    if (!toggle || !links) return;
+
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    links.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            links.classList.remove('active');
+        });
+    });
+}
+
 // ========================================
 // SMOOTH SCROLL
 // ========================================
@@ -231,25 +239,7 @@ function initSmoothScroll() {
 // BLINK WIDGET
 // ========================================
 
-function initBlinkWidget() {
-    const container = document.getElementById('blink-widget');
-    if (!container) return;
-
-    // Embed Blink Pay widget
-    container.innerHTML = `
-        <div style="text-align: center;">
-            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
-                Send sats via Lightning
-            </p>
-            <a href="https://pay.blink.sv/bitcoinubuntu" target="_blank" class="btn btn-primary">
-                Donate via Blink
-            </a>
-            <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.85rem;">
-                Or send to: <span class="mono">bitcoinubuntu@blink.sv</span>
-            </p>
-        </div>
-    `;
-}
+// Blink Pay Button widget is initialized via inline script in index.html
 
 // ========================================
 // UTILITIES
@@ -267,6 +257,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Mobile navigation
     initMobileNav();
 
+    // Mobile footer
+    initMobileFooter();
+
     // Smooth scroll
     initSmoothScroll();
 
@@ -283,13 +276,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Render merchant grid
     renderMerchantGrid();
 
-    // Init Blink widget
-    initBlinkWidget();
-
-    // Fetch and display PoWBoT stats
+    // Fetch and display PoWBoT stats (for PoWBoT section only)
     const stats = await fetchPowBotStats();
     if (stats) {
-        updateHeroStats(stats);
         updateLiveStats(stats);
         updateCountryTags(stats);
     }
