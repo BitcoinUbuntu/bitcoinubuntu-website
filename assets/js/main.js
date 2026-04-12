@@ -7,7 +7,6 @@
 // ========================================
 
 const CONFIG = {
-    powbotStatsUrl: 'https://bitcoinubuntu.github.io/powbot-stats/stats.json',
     typingSpeed: 60,
     taglines: [
         'Study Bitcoin.',
@@ -110,52 +109,8 @@ class TypeWriter {
 // POWBOT STATS
 // ========================================
 
-async function fetchPowBotStats() {
-    try {
-        const response = await fetch(CONFIG.powbotStatsUrl + '?t=' + Date.now());
-        if (!response.ok) throw new Error('Failed to fetch stats');
-        const stats = await response.json();
-        return stats;
-    } catch (error) {
-        console.error('Error fetching PoWBoT stats:', error);
-        return null;
-    }
-}
-
-// Hero stats are now static - no need to update from API
-
-function updateLiveStats(stats) {
-    if (!stats) return;
-
-    const approvedEl = document.getElementById('live-approved');
-    const projectsEl = document.getElementById('live-projects');
-    const merchantsEl = document.getElementById('live-merchants');
-
-    if (approvedEl) {
-        approvedEl.textContent = formatNumber(stats.reviewer?.approved || 0);
-    }
-    if (projectsEl) {
-        projectsEl.textContent = stats.top_projects?.length || 0;
-    }
-    if (merchantsEl) {
-        merchantsEl.textContent = stats.top_merchants?.length || 0;
-    }
-}
-
-function updateCountryTags(stats) {
-    if (!stats || !stats.countries) return;
-
-    const container = document.getElementById('country-tags');
-    if (!container) return;
-
-    container.innerHTML = stats.countries.map(c => `
-        <span class="country-tag">
-            <span class="country-flag">${c.flag}</span>
-            <span class="country-name">${c.country}</span>
-            ${c.count > 1 ? `<span class="country-count">(${c.count})</span>` : ''}
-        </span>
-    `).join('');
-}
+// PoWBoT stats now displayed on separate stats page
+// No dynamic stats loading needed on main page
 
 // ========================================
 // MERCHANT GRID
@@ -275,13 +230,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Render merchant grid
     renderMerchantGrid();
-
-    // Fetch and display PoWBoT stats (for PoWBoT section only)
-    const stats = await fetchPowBotStats();
-    if (stats) {
-        updateLiveStats(stats);
-        updateCountryTags(stats);
-    }
 });
 
 // ========================================
