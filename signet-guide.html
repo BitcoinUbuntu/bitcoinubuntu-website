@@ -99,6 +99,7 @@
             border: 1px solid var(--border);
             overflow-x: auto;
             margin: var(--spacing-lg) 0;
+            position: relative;
         }
 
         .guide-content pre code {
@@ -106,6 +107,32 @@
             padding: 0;
             color: var(--text-primary);
             font-size: 0.875rem;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            font-family: var(--font-mono);
+        }
+
+        .copy-button:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+        }
+
+        .copy-button.copied {
+            color: var(--accent-green);
+            border-color: var(--accent-green);
         }
 
         .info-box {
@@ -240,31 +267,25 @@
             </div>
 
             <h2>Overview</h2>
-            <p>This setup runs two Docker containers:</p>
-            <ul>
-                <li><strong>signet-bitcoind</strong> – Bitcoin Core v28 in signet mode, fully synced</li>
-                <li><strong>signet-electrs</strong> – electrs v0.10.9, built from source, indexing the signet chain</li>
-            </ul>
-            <p>Sparrow Wallet connects to electrs locally on port <code>60601</code>.</p>
+            <p>This setup runs Bitcoin Core and electrs in Docker containers. Sparrow Wallet connects to your local node on port <code>60601</code>.</p>
             <p><strong>Disk space required:</strong> approximately 28 GB<br>
             <strong>Sync time:</strong> 15–30 minutes</p>
 
             <h2>Prerequisites</h2>
             <div class="tools-list">
                 <ul>
-                    <li>Windows 11 or Windows 10 (build 19045 or newer)</li>
+                    <li>Windows 10/11</li>
                     <li><a href="https://www.docker.com/products/docker-desktop/" target="_blank" style="color: var(--accent-blue);">Docker Desktop</a> installed and running</li>
                     <li><a href="https://sparrowwallet.com/" target="_blank" style="color: var(--accent-blue);">Sparrow Wallet</a> installed</li>
                 </ul>
             </div>
 
-            <h2>Step 1 – Create the project folder</h2>
-            <p>Open PowerShell and run:</p>
+            <h2>Step 1 – Create project files</h2>
+            <p>Open PowerShell, create the project folder, and navigate into it:</p>
             <pre><code>mkdir ~/signet-stack
 cd ~/signet-stack</code></pre>
 
-            <h2>Step 2 – Create docker-compose.yml</h2>
-            <p>In <code>~/signet-stack</code>, create a file named <code>docker-compose.yml</code> with the following content:</p>
+            <p>Create a file named <code>docker-compose.yml</code> with the following content:</p>
             <pre><code>services:
   bitcoind:
     image: bitcoin/bitcoin:28
@@ -313,7 +334,7 @@ volumes:
   bitcoin_data:
   electrs_data:</code></pre>
 
-            <h2>Step 3 – Create Dockerfile.electrs</h2>
+            <h2>Step 2 – Create Dockerfile.electrs</h2>
             <p>In the same <code>~/signet-stack</code> folder, create a file named <code>Dockerfile.electrs</code> with the following content:</p>
             <pre><code>FROM rust:1.85-slim AS builder
 RUN apt-get update && apt-get install -y clang cmake libclang-dev
@@ -323,28 +344,25 @@ RUN apt-get update && apt-get install -y libssl3 ca-certificates && rm -rf /var/
 COPY --from=builder /usr/local/cargo/bin/electrs /usr/local/bin/electrs
 ENTRYPOINT ["electrs"]</code></pre>
 
-            <h2>Step 4 – Build and start the stack</h2>
+            <h2>Step 3 – Build and start the stack</h2>
             <p>From <code>~/signet-stack</code>, run:</p>
             <pre><code>docker compose up -d --build</code></pre>
             <p>The first run will take <strong>3–5 minutes</strong> as it compiles electrs from Rust source. Subsequent starts are instant.</p>
 
-            <h2>Step 5 – Monitor sync progress</h2>
+            <h2>Step 4 – Monitor sync progress</h2>
             <p>Watch Bitcoin Core sync the signet chain:</p>
             <pre><code>docker logs -f signet-bitcoind</code></pre>
-            <p>You will see <code>Synchronizing blockheaders</code> followed by <code>UpdateTip</code> messages. Sync is complete when you see:</p>
-            <pre><code>progress=1.000000</code></pre>
+            <p>You will see <code>Synchronizing blockheaders</code> followed by <code>UpdateTip</code> messages. Sync is complete when you see <code>progress=1.000000</code>.</p>
             <p>The signet chain is ~310,000 blocks and syncs in roughly 15–30 minutes.</p>
             <p>Check quickly at any time with:</p>
             <pre><code>docker logs signet-bitcoind --tail 5</code></pre>
 
-            <h2>Step 6 – Monitor electrs indexing</h2>
+            <h2>Step 5 – Monitor electrs indexing</h2>
             <p>Once Bitcoin Core is synced, watch electrs index the chain:</p>
             <pre><code>docker logs -f signet-electrs</code></pre>
-            <p>Indexing is complete when you see:</p>
-            <pre><code>finished full compaction</code></pre>
-            <p>This typically takes a few minutes after Bitcoin Core reaches tip.</p>
+            <p>Indexing is complete when you see <code>finished full compaction</code>. This typically takes a few minutes after Bitcoin Core reaches tip.</p>
 
-            <h2>Step 7 – Connect Sparrow Wallet</h2>
+            <h2>Step 6 – Connect Sparrow Wallet</h2>
             <p>In Sparrow Wallet running in signet mode (launch with <code>-n signet</code> flag, or switch network via <strong>Tools → Restart In → Signet</strong>):</p>
             <ol>
                 <li>Go to <strong>File → Preferences → Server</strong></li>
@@ -373,10 +391,13 @@ ENTRYPOINT ["electrs"]</code></pre>
             </ul>
 
             <p><strong>Alternative methods:</strong></p>
-            <p>Use the Docker Desktop GUI to start/stop individual containers, or use command-line:</p>
-            <pre><code>cd ~/signet-stack
-docker compose up -d    # Start
-docker compose down     # Stop</code></pre>
+            <p>Use the Docker Desktop GUI to start/stop individual containers, or use command-line from <code>~/signet-stack</code>:</p>
+
+            <p><strong>Start the stack:</strong></p>
+            <pre><code>docker compose up -d</code></pre>
+
+            <p><strong>Stop the stack:</strong></p>
+            <pre><code>docker compose down</code></pre>
 
             <div class="info-box">
                 <p><strong>Note:</strong> The Bitcoin Core chain data and electrs index are stored in Docker named volumes and persist between restarts. You won't need to resync from scratch – the node will catch up on blocks mined while it was offline (usually takes 1-2 minutes).</p>
@@ -441,5 +462,41 @@ docker compose down     # Stop</code></pre>
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
+    <script>
+        // Add copy buttons to all code blocks
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.guide-content pre');
+
+            codeBlocks.forEach(function(block) {
+                const button = document.createElement('button');
+                button.className = 'copy-button';
+                button.textContent = 'Copy';
+                button.setAttribute('aria-label', 'Copy code to clipboard');
+
+                button.addEventListener('click', function() {
+                    const code = block.querySelector('code');
+                    const text = code.textContent;
+
+                    navigator.clipboard.writeText(text).then(function() {
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied');
+
+                        setTimeout(function() {
+                            button.textContent = 'Copy';
+                            button.classList.remove('copied');
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Failed to copy:', err);
+                        button.textContent = 'Failed';
+                        setTimeout(function() {
+                            button.textContent = 'Copy';
+                        }, 2000);
+                    });
+                });
+
+                block.appendChild(button);
+            });
+        });
+    </script>
 </body>
 </html>
