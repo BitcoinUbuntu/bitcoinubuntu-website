@@ -377,6 +377,24 @@ ENTRYPOINT ["electrs"]</code></pre>
                 <code>Welcome to electrs 0.10.9 (Electrum Rust Server)!</code></p>
             </div>
 
+            <h2>Getting Signet Coins</h2>
+            <p>To test transactions, you'll need signet coins from a faucet. These coins have no real-world value and are only for testing.</p>
+
+            <p><strong>Get a receive address from Sparrow:</strong></p>
+            <ol>
+                <li>In Sparrow Wallet, go to the <strong>Receive</strong> tab</li>
+                <li>Copy your signet address</li>
+            </ol>
+
+            <p><strong>Request coins from the faucet:</strong></p>
+            <p>Visit <a href="https://bitcoinsignetfaucet.com/" target="_blank" style="color: var(--accent-blue);">bitcoinsignetfaucet.com</a>, paste your address, and request coins.</p>
+
+            <div class="info-box">
+                <p><strong>Note:</strong> The faucet has rate limits to prevent draining. If you receive an "Out of Funds or Rate Limited" message, wait and try again later. Coins typically arrive within a few blocks (~10-20 minutes).</p>
+            </div>
+
+            <p>If the faucet is temporarily unavailable, search for "bitcoin signet faucet" to find alternative services.</p>
+
             <h2>Daily use</h2>
             <p>After initial setup, the signet stack containers are configured to auto-start whenever Docker Desktop launches (due to the <code>restart: unless-stopped</code> policy).</p>
 
