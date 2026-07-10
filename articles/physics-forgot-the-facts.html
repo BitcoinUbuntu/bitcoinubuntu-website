@@ -15,9 +15,9 @@
 <link rel="icon" type="image/png" href="../assets/images/logo.png">
 <style>
   :root{
-    --bg:#0b0b0c; --card:#141416; --card2:#101012; --line:#26262a; --line2:#1c1c20;
-    --ink:#f4f4f5; --ink2:#b3b3bb; --ink3:#83838c; --ink4:#5c5c64;
-    --claim:#e8836f; --real:#57d69b; --accent:#f0b429; --link:#79b8ff;
+    --bg:#0d1117; --card:#21262d; --card2:#161b22; --line:#30363d; --line2:#161b22;
+    --ink:#f0f6fc; --ink2:#8b949e; --ink3:#6e7681; --ink4:#484f58;
+    --claim:#f85149; --real:#3fb950; --accent:#f7931a; --link:#58a6ff;
     --maxw:760px;
   }
   *{box-sizing:border-box}
@@ -26,8 +26,8 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;line-height:1.65;font-size:18px}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 24px 96px}
-  a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(121,184,255,.28)}
-  a:hover{border-bottom-color:var(--link)}
+  a{color:var(--link);text-decoration:none}
+  a:hover{color:var(--accent)}
   .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 16px}
   h1{font-size:38px;line-height:1.16;letter-spacing:-.02em;font-weight:680;margin:0 0 18px}
   h1 .g{color:var(--real)}
@@ -41,9 +41,9 @@
   h3{font-size:27px;line-height:1.25;letter-spacing:-.01em;font-weight:650;margin:6px 0 18px}
   p{margin:0 0 20px}
   .lead{font-size:19px}
-  strong{color:#fff;font-weight:650}
+  strong{color:var(--ink);font-weight:650}
   em{color:var(--ink)}
-  .callout{background:linear-gradient(180deg,#17130b,#131211);border:1px solid #3a2f16;border-radius:14px;
+  .callout{background:var(--card2);border:1px solid var(--line);border-radius:14px;
     padding:20px 22px;margin:26px 0;font-size:16.5px;line-height:1.55}
   .callout .h{color:var(--accent);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
   .callout b{color:var(--accent)}
@@ -66,7 +66,7 @@
   td.sc .tag{display:block;font-weight:400;color:var(--ink4);font-size:12px;margin-top:2px}
   .num{white-space:nowrap}
   .claim{color:var(--claim)}
-  .claim .strike{text-decoration:line-through;text-decoration-color:rgba(232,131,111,.5);opacity:.9}
+  .claim .strike{text-decoration:line-through;text-decoration-color:rgba(248,81,73,.5);opacity:.9}
   .real{color:var(--real);font-weight:600}
   .r{text-align:right}
   .legend{display:flex;gap:18px;padding:12px 20px 0;font-size:12.5px;color:var(--ink2);flex-wrap:wrap}
@@ -76,19 +76,19 @@
   .bars{padding:16px 20px 20px}
   .bar{display:grid;grid-template-columns:112px 1fr 92px;align-items:center;gap:12px;margin:7px 0}
   .bar .lab{font-size:12.5px;color:var(--ink2)}
-  .bar .track{height:15px;background:#1c1c20;border-radius:5px;overflow:hidden}
+  .bar .track{height:15px;background:#161b22;border-radius:5px;overflow:hidden}
   .bar .fill{height:100%;border-radius:5px}
-  .bar .fill.g{background:linear-gradient(90deg,#57d69b,#3fae7d)}
-  .bar .fill.hl{background:linear-gradient(90deg,#f0b429,#c98f14)}
+  .bar .fill.g{background:linear-gradient(90deg,#3fb950,#2ea043)}
+  .bar .fill.hl{background:linear-gradient(90deg,#f7931a,#d97706)}
   .bar.hl .lab, .bar.hl .val{color:var(--accent)}
-  .bar .fill.r{background:linear-gradient(90deg,#e8836f,#c25a45)}
+  .bar .fill.r{background:linear-gradient(90deg,#f85149,#da3633)}
   .bar .val{font-size:12.5px;color:var(--ink2);text-align:right}
   .cmp{padding:18px 20px}
   .cmp .row{margin:14px 0}
   .cmp .rl{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}
   .cmp .rl .v{font-variant-numeric:tabular-nums}
-  .cmp .track{height:22px;background:#1c1c20;border-radius:6px;overflow:hidden}
-  .cmp .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:12px;color:#0b0b0c;font-weight:700}
+  .cmp .track{height:22px;background:#161b22;border-radius:6px;overflow:hidden}
+  .cmp .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:12px;color:#0d1117;font-weight:700}
   hr{border:0;border-top:1px solid var(--line);margin:52px 0}
   .foot{font-size:14px;color:var(--ink3);line-height:1.6}
   .foot h3{font-size:20px;color:var(--ink);margin:0 0 12px}
@@ -276,11 +276,11 @@
     <div class="cmp">
       <div class="row">
         <div class="rl"><span>Article's claimed 100-year yield</span><span class="v claim">103,000 BTC</span></div>
-        <div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#e8836f,#c25a45)">claimed</div></div>
+        <div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#f85149,#da3633)">claimed</div></div>
       </div>
       <div class="row">
         <div class="rl"><span>Most that hashrate could <em>ever</em> earn (its ~6.9% share of all 950,000 BTC left)</span><span class="v real">~65,400 BTC</span></div>
-        <div class="track"><div class="fill" style="width:63.5%;background:linear-gradient(90deg,#57d69b,#3fae7d)">the ceiling</div></div>
+        <div class="track"><div class="fill" style="width:63.5%;background:linear-gradient(90deg,#3fb950,#2ea043)">the ceiling</div></div>
       </div>
     </div>
     <figcaption>103,000 BTC is about 10.8% of all the issuance left, awarded to a miner with about 6.9% of the hashrate, roughly 1.6 times what that slice could ever collect even if the network froze at today's size and ran to 2140. The extra ~37,600 BTC would have to come out of other miners' blocks.</figcaption>
