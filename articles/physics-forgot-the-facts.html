@@ -58,7 +58,7 @@
   .fig-h .t{font-weight:650;font-size:16px}
   .fig-h .s{font-size:13.5px;color:var(--ink3);margin-top:3px}
   table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-  @media (max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}table th,table td{white-space:nowrap}}
+  @media (max-width:640px){.cmp .rl{flex-direction:column;gap:2px}.cmp .rl .v{align-self:flex-start}.cmp .fill{font-size:10px;white-space:nowrap}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}table th,table td{white-space:nowrap}}
   th,td{text-align:left;padding:12px 16px;font-size:14.5px}
   thead th{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);
     font-weight:600;background:var(--card2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -96,7 +96,7 @@
   .srcs{font-size:13.5px;color:var(--ink3);line-height:1.5;font-style:italic}
   .srcs a{color:var(--ink2);font-style:normal}
   .note{font-size:13.5px;color:var(--ink);font-style:normal}
-  @media (max-width:640px){
+  @media (max-width:640px){.cmp .rl{flex-direction:column;gap:2px}.cmp .rl .v{align-self:flex-start}.cmp .fill{font-size:10px;white-space:nowrap}
     body{font-size:17px}
     h1{font-size:30px}
     h3{font-size:23px}
@@ -108,12 +108,12 @@
   .chart-row{display:flex;gap:10px;margin:16px 0 4px}
   .chart-item{flex:1 1 0;min-width:0}
   .chart-thumb{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;cursor:zoom-in;display:block}
-  .chart-cap{font-size:11px;color:var(--ink4);text-align:center;margin-top:5px}
+  .chart-cap{font-size:11px;color:var(--ink4);text-align:left;margin-top:5px}
   .chart-note{font-size:12.5px;color:var(--ink3);margin:10px 0 0}
   .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:1000;cursor:zoom-out;padding:20px}
   .lb.open{display:flex}
   .lb img{max-width:96vw;max-height:92vh;border-radius:8px;border:1px solid var(--line)}
-  @media (max-width:640px){.chart-row{flex-wrap:wrap}.chart-item{flex:1 1 45%}}
+  @media (max-width:640px){.cmp .rl{flex-direction:column;gap:2px}.cmp .rl .v{align-self:flex-start}.cmp .fill{font-size:10px;white-space:nowrap}.chart-row{flex-wrap:wrap}.chart-item{flex:1 1 45%}}
 
   /* ===== Site running header/footer (matches bitcoinubuntu.org) ===== */
   :root{
@@ -190,7 +190,7 @@
 
   <p>The article has the vocabulary down, and at first glance it can seem persuasive. Look closer though, and it starts to fall apart. It opens with things that are genuinely fixed (SHA-256, the 21 million cap, the halving schedule) and uses these to frame a set of tables that project a mining setup's earnings all the way out to the year 2126, ranked by a "100-Year Score".</p>
 
-  <p>No method is shown anywhere. We rebuilt its tables every realistic way we could come up with. Section 02 shows the only model that fit, along with what that reveals about the second fifty years. We'll grant him his own stale rates, the growth his own tables imply and every generous rounding, and show the numbers still don't hold up to the barest scrutiny.</p>
+  <p>No method is shown anywhere. We rebuilt its tables every realistic way we could come up with. Section 02 shows the only model that fit, along with what that reveals about the second fifty years. We'll grant the author his own stale rates, the growth his own tables imply and every generous rounding, and show the numbers still don't hold up to the barest scrutiny.</p>
 
   <p>The mistakes are at least instructive, so we'll explain the mechanics as we go (the halving, a miner's share of the network, pool and transaction fees, stale shares) and let the errors show themselves. He gets the trivia right and the conclusions wrong.</p>
 
