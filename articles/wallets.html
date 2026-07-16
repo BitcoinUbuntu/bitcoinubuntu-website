@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Bitcoin Wallets –Bitcoin Ubuntu</title>
+    <meta name="description" content="Learn about Bitcoin wallets, custody types, and how to choose the right wallet for your needs.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bitcoinubuntu.org/articles/wallets.html">
+    <meta property="og:title" content="Introduction to Bitcoin Wallets –Bitcoin Ubuntu">
+    <meta property="og:description" content="Learn about Bitcoin wallets, custody types, and how to choose the right wallet for your needs.">
+    <meta property="og:image" content="https://bitcoinubuntu.org/assets/images/logo.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-2xl) + 80px) var(--spacing-lg) var(--spacing-2xl);
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .guide-header h1 {
+            color: var(--accent-orange);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .guide-content {
+            background: var(--bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .guide-content h2 {
+            color: var(--accent-orange);
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .guide-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .guide-content h3 {
+            color: var(--text-secondary);
+            margin-top: var(--spacing-lg);
+        }
+
+        .guide-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .guide-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .guide-content ul, .guide-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-xl);
+            color: var(--text-secondary);
+        }
+
+        .guide-content li {
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.8;
+        }
+
+        .wallet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .wallet-table th,
+        .wallet-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .wallet-table th {
+            background: var(--bg-secondary);
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .wallet-table td {
+            color: var(--text-secondary);
+        }
+
+        .wallet-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .cta-box {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-orange);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+            border-radius: var(--radius-sm);
+        }
+
+        .cta-box p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-box a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cta-box a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-normal);
+        }
+
+        .back-link:hover {
+            background: var(--bg-card);
+            border-color: var(--accent-orange);
+        }
+
+        @media (max-width: 768px) {
+            .guide-container {
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+            }
+
+            .guide-content {
+                padding: var(--spacing-lg);
+            }
+
+            .wallet-table {
+                font-size: 14px;
+            }
+
+            .wallet-table th,
+            .wallet-table td {
+                padding: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/images/logo.png" alt="Bitcoin Ubuntu">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html#learn">Learn</a></li>
+                <li><a href="../index.html#merchants">Merchants</a></li>
+                <li><a href="../index.html#powbot">PoWBoT</a></li>
+                <li><a href="../index.html#community">Community</a></li>
+                <!-- <li><a href="../index.html#support">Support</a></li> -->
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>Introduction to Bitcoin Wallets</h1>
+            <p style="color: var(--text-secondary); font-size: 1.125rem;">Learn about wallet types, custody options, and how to choose the right wallet for your needs.</p>
+        </div>
+
+        <div class="guide-content">
+            <h2>Getting Started</h2>
+            <p>To begin using Bitcoin, you need two essentials: a wallet and a method to acquire Bitcoin. This guide focuses on wallets, adapted from the Bitcoin Diploma curriculum.</p>
+
+            <h2>What is a Bitcoin Wallet?</h2>
+            <p>Contrary to common misconception, Bitcoin doesn't physically reside in your wallet. Instead, it exists on the distributed, public ledger that the Bitcoin network constantly verifies. True ownership requires holding <strong>private keys</strong> that enable transaction signing and asset transfer.</p>
+            <p>Your wallet is essentially a tool for managing these private keys and interacting with the Bitcoin network.</p>
+
+            <h2>Wallet Custody Types</h2>
+
+            <h3>Self-Custodial Wallets</h3>
+            <ul>
+                <li>You retain private keys and complete control over your Bitcoin</li>
+                <li>No account freeze or approval processes</li>
+                <li>Full responsibility for security and recovery</li>
+                <li>High protection against arbitrary confiscation</li>
+                <li><strong>Recommended for long-term savings</strong></li>
+            </ul>
+
+            <h3>Custodial Wallets</h3>
+            <ul>
+                <li>Third party holds private keys on your behalf</li>
+                <li>User-friendly with recovery support</li>
+                <li>Internet-connected funds face hacking vulnerability</li>
+                <li>Custodians can freeze accounts or rehypothecate assets</li>
+                <li><strong>Best for small amounts and daily spending</strong></li>
+            </ul>
+
+            <div class="cta-box">
+                <p><strong>Remember:</strong> "Not your keys, not your coins" – If you don't control the private keys, you don't truly own the Bitcoin.</p>
+            </div>
+
+            <h2>Recommended Mobile Wallets</h2>
+
+            <table class="wallet-table">
+                <thead>
+                    <tr>
+                        <th>Wallet</th>
+                        <th>Type</th>
+                        <th>License</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Blink</strong></td>
+                        <td>Custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wallet of Satoshi</strong></td>
+                        <td>Custodial</td>
+                        <td>Closed source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aqua</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phoenix</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Breez</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zeus</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Muun</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BlueWallet</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blockstream Green</strong></td>
+                        <td>Self-custodial</td>
+                        <td>Open source</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Selection Criteria</h2>
+            <p>When choosing a wallet, carefully evaluate these factors:</p>
+            <ul>
+                <li><strong>Security measures</strong> – Encryption, multi-signature support, biometric protection</li>
+                <li><strong>Privacy features</strong> – Address rotation, coin control, Tor support</li>
+                <li><strong>User-friendliness</strong> – Interface design, ease of backup and recovery</li>
+                <li><strong>Fee structures</strong> – Transaction fees, ability to customize fee rates</li>
+                <li><strong>Reputation</strong> – Community trust, track record, active development</li>
+                <li><strong>Private key control</strong> – Self-custodial vs custodial</li>
+                <li><strong>Advanced features</strong> – Custom fees, Lightning Network support, hardware wallet integration</li>
+            </ul>
+
+            <h2>Cold Storage (Hardware Wallets)</h2>
+            <p>For significant Bitcoin holdings, hardware wallets provide the highest level of security by keeping your private keys offline:</p>
+            <ul>
+                <li><strong>Coldcard</strong> – Air-gapped, Bitcoin-only hardware wallet</li>
+                <li><strong>Blockstream Jade</strong> – Open-source, affordable option</li>
+                <li><strong>Bitbox02</strong> – Swiss-made, simple design</li>
+                <li><strong>Passport</strong> – Premium build quality, open-source</li>
+                <li><strong>Seedsigner</strong> – DIY air-gapped signing device</li>
+                <li><strong>Trezor</strong> – Long-standing reputation, user-friendly</li>
+            </ul>
+
+            <div class="cta-box">
+                <p><strong>Best Practice:</strong> Use a hardware wallet for long-term savings ("cold storage") and a mobile wallet for daily spending ("hot wallet").</p>
+            </div>
+
+            <h2>Transaction Types</h2>
+
+            <h3>Lightning Network</h3>
+            <p>Near-instant, low-cost transactions ideal for daily use. Perfect for buying coffee, tipping, or small payments. Most modern mobile wallets support Lightning.</p>
+
+            <h3>On-Chain (Base Layer)</h3>
+            <p>Secure, high-value transactions suited for long-term savings and larger amounts. Provides the highest level of security and decentralization.</p>
+
+            <h2>Next Steps</h2>
+            <p>Want deeper learning? <a href="https://edu.myfirstbitcoin.io/" target="_blank" style="color: var(--accent-blue);">Sign up for live classes</a> through <a href="https://myfirstbitcoin.io/" target="_blank" style="color: var(--accent-blue);">My First Bitcoin</a>'s education platform.</p>
+
+            <div class="cta-box" style="margin-top: var(--spacing-xl);">
+                <p><strong>Need help setting up your wallet?</strong></p>
+                <p>Join our <a href="https://wa.me/27713389109" target="_blank" style="color: var(--accent-blue);">WhatsApp</a> or <a href="https://t.me/bitcoinubuntu" target="_blank" style="color: var(--accent-blue);">Telegram</a> community or attend one of our workshops for hands-on guidance.</p>
+            </div>
+        </div>
+
+        <a href="../index.html#learn" class="back-link">← Back to Learn</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: var(--spacing-2xl);">
+        <div class="container">
+            <div class="footer-content">
+                <button class="footer-toggle" aria-label="Toggle footer navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="footer-links">
+                    <li><a href="../index.html#learn">Learn</a></li>
+                    <li><a href="../index.html#merchants">Merchants</a></li>
+                    <li><a href="../index.html#powbot">PoWBoT</a></li>
+                    <li><a href="../index.html#community">Community</a></li>
+                    <!-- <li><a href="../index.html#support">Support</a></li> -->
+                    <li><a href="../index.html#about">About</a></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="https://x.com/BitcoinUbuntu" target="_blank" title="X (Twitter)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://github.com/BitcoinUbuntu" target="_blank" title="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@BitcoinUbuntu" target="_blank" title="YouTube">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://wa.me/27713389109" target="_blank" title="WhatsApp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">
+                &copy; 2026 Bitcoin Ubuntu | Built by Lab21
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
