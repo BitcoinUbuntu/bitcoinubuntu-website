@@ -141,17 +141,17 @@
   <p class="subtitle">A Practical Guide</p>
   <p class="standfirst"><em>Your password is probably not enough. Here's how to add a second layer of protection to your accounts, and why it matters.</em></p>
   <div class="byline">
-    <span>By G. Jooste <a href="https://x.com/bitcoinubuntu">@bitcoinubuntu</a></span>
+    <span><a href="https://x.com/bitcoinubuntu">@bitcoinubuntu</a></span>
     <span>16 July 2026</span>
   </div>
 
-  <p>Someone you know has probably had an account stolen. Maybe it was a Telegram group admin who suddenly started posting scam links. Maybe an email account got hijacked and used to reset passwords elsewhere.</p>
+  <p>Someone you know has probably had an account stolen before. Maybe it was a Telegram group admin who suddenly started posting scam links. Maybe an email account got hijacked and used to reset passwords elsewhere.</p>
 
-  <p>The attack routes vary. For most services, an attacker needs your password – leaked in a breach, guessed, or phished. For Telegram and WhatsApp, they need control of your phone number (a SIM swap can do it), or access to a device where you're already logged in.</p>
+  <p>The attack routes vary. For most services, an attacker needs your password – leaked in a breach, guessed, or phished. For services like Telegram and WhatsApp, they need control of your phone number (a SIM swap can do it), or access to a device where you're already logged in.</p>
 
   <p>Either way, the fix is the same: require a second proof of identity before letting anyone in.</p>
 
-  <h3>What two-factor authentication actually does</h3>
+  <h3>What is two-factor authentication?</h3>
 
   <p>When you log in with 2FA enabled, the service asks for your password as usual. But then it asks for a second code – one that changes every thirty seconds and only exists on a device you control.</p>
 
@@ -163,7 +163,7 @@
     <li><strong>Something you have</strong> – your phone, generating time-based codes</li>
   </ol>
 
-  <p>Both are required. Compromise one, and the other still protects you.</p>
+  <p>Both are required.</p>
 
   <h3>Why SMS codes aren't ideal</h3>
 
@@ -179,7 +179,7 @@
 
   <p>When you set up 2FA on a service, it shows you a QR code. You scan it with your authenticator app, and from then on your app generates valid codes for that account.</p>
 
-  <p>Here's how the main options compare:</p>
+  <p>Here's how some of the main options compare:</p>
 
   <figure>
     <table>
@@ -193,20 +193,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><a href="https://support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a></td>
-          <td>iOS, Android</td>
-          <td>No</td>
-          <td>Syncs to Google account</td>
-          <td>Widely known, easy to set up</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.microsoft.com/security/mobile-authenticator-app" target="_blank">Microsoft Authenticator</a></td>
-          <td>iOS, Android</td>
-          <td>No</td>
-          <td>Syncs to Microsoft account</td>
-          <td>Passwordless sign-in for Microsoft accounts</td>
-        </tr>
         <tr>
           <td><a href="https://2fas.com/" target="_blank">2FAS</a></td>
           <td>iOS, Android</td>
@@ -222,6 +208,13 @@
           <td>Fully offline, no account required</td>
         </tr>
         <tr>
+          <td><a href="https://bitwarden.com/products/authenticator/" target="_blank">Bitwarden Authenticator</a></td>
+          <td>iOS, Android</td>
+          <td>Yes</td>
+          <td>Syncs with Bitwarden vault (optional)</td>
+          <td>Great if you already use Bitwarden</td>
+        </tr>
+        <tr>
           <td><a href="https://ente.io/auth/" target="_blank">Ente Auth</a></td>
           <td>iOS, Android, Desktop, Web</td>
           <td>Yes</td>
@@ -229,11 +222,18 @@
           <td>Works across all your devices</td>
         </tr>
         <tr>
-          <td><a href="https://bitwarden.com/products/authenticator/" target="_blank">Bitwarden Authenticator</a></td>
+          <td><a href="https://support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a></td>
           <td>iOS, Android</td>
-          <td>Yes</td>
-          <td>Syncs with Bitwarden vault (optional)</td>
-          <td>Great if you already use Bitwarden</td>
+          <td>No</td>
+          <td>Syncs to Google account</td>
+          <td>Widely known, easy to set up</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.microsoft.com/security/mobile-authenticator-app" target="_blank">Microsoft Authenticator</a></td>
+          <td>iOS, Android</td>
+          <td>No</td>
+          <td>Syncs to Microsoft account</td>
+          <td>Passwordless sign-in for Microsoft accounts</td>
         </tr>
       </tbody>
     </table>
@@ -241,21 +241,18 @@
 
   <p><strong>Which to choose?</strong></p>
 
-  <p>If you just want something familiar and don't mind Google handling sync, <strong>Google Authenticator</strong> works fine.</p>
-
-  <p>If you're in a Microsoft environment (Outlook, Office 365, work accounts), <strong>Microsoft Authenticator</strong> is a natural fit – it also supports passwordless sign-in for Microsoft services.</p>
-
-  <p>If you want open-source software with a bit more control over your backups, <strong>2FAS</strong> is a good middle ground – it's cross-platform and has a handy browser extension.</p>
-
-  <p>If you're on Android and want maximum privacy with no cloud involvement at all, <strong>Aegis</strong> is the pick. You manage your own encrypted backups.</p>
-
-  <p>If you need your codes on multiple devices including a computer, <strong>Ente Auth</strong> syncs everywhere with end-to-end encryption. The trade-off: your secrets live on Ente's servers (encrypted, and they've passed independent security audits), and if you forget your Ente password there's no recovery. It's a smaller company than Google or Microsoft, so you're trusting they'll stick around.</p>
-
-  <p>If you already use <strong>Bitwarden</strong> as your password manager, their authenticator integrates nicely with your existing vault.</p>
-
   <p>Any of these is vastly better than no 2FA at all. Pick one that you'll actually use.</p>
 
-  <h3>Before you enable 2FA: check who's already in</h3>
+  <ul>
+    <li><strong><a href="https://2fas.com/" target="_blank">2FAS</a></strong> – open source, cross-platform, browser extension makes logins quick. Backups stay on your own iCloud or Google Drive.</li>
+    <li><strong><a href="https://getaegis.app/" target="_blank">Aegis</a></strong> – for Android users who want no cloud involvement. You manage your own encrypted backups.</li>
+    <li><strong><a href="https://bitwarden.com/products/authenticator/" target="_blank">Bitwarden</a></strong> – slots into your existing vault if you already use Bitwarden.</li>
+    <li><strong><a href="https://ente.io/auth/" target="_blank">Ente Auth</a></strong> – syncs across phone, computer, and web with end-to-end encryption.</li>
+    <li><strong><a href="https://support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a></strong> – works fine if you just want something familiar.</li>
+    <li><strong><a href="https://www.microsoft.com/security/mobile-authenticator-app" target="_blank">Microsoft Authenticator</a></strong> – natural fit for Microsoft environments, supports passwordless sign-in.</li>
+  </ul>
+
+  <h3>Before you enable 2FA</h3>
 
   <p>If you're setting up 2FA because something feels off, check your active sessions first. In Telegram, go to Settings > Devices to see everywhere you're logged in. If there's a session you don't recognise – a device you don't own, a location you've never been – terminate it immediately.</p>
 
@@ -279,11 +276,11 @@
 
   <p>When you enable 2FA, most services give you a set of one-time backup codes. These are your emergency keys. If you lose your phone, they're the only way back into your account.</p>
 
-  <p><strong>Write them down on paper</strong> and store them somewhere safe – not on the phone you're using for 2FA. A fireproof safe, a locked drawer, wherever you keep important documents.</p>
+  <p>Write them down on paper and store them somewhere safe – not on the phone you're using for 2FA. A fireproof safe, a locked drawer, wherever you keep important documents.</p>
 
   <p>Some people store them in a password manager. That works too, as long as the password manager itself isn't locked behind the same phone you just lost.</p>
 
-  <p>If you skip this step and then lose your phone, you may be permanently locked out. Recovery processes exist but they're slow, frustrating, and sometimes impossible. Save the backup codes.</p>
+  <p><strong>If you skip this step and then lose your phone, you may be permanently locked out.</strong> Recovery processes exist but they're slow, frustrating, and sometimes impossible.</p>
 
   <h3>What to secure first</h3>
 
@@ -297,13 +294,11 @@
     <li><strong>Social media</strong> – Account takeovers spread scams to your contacts under your name.</li>
   </ol>
 
-  <p>Work down the list over a few days if you need to. Each account you secure is one less way in for an attacker.</p>
+  <p>Work down the list over a few days if you need to. Each account you secure is one less way for an attacker to get in.</p>
 
   <hr>
 
-  <p>Two-factor authentication isn't complicated, and it doesn't take long to set up. The few minutes you spend now could save you from a much worse few days later.</p>
-
-  <p>Pick an app. Start with your email. Work through the list. And save those backup codes.</p>
+  <p>Two-factor authentication isn't complicated, and it doesn't take long to set up. The few minutes you spend now could save you from much worse later.</p>
 
   <hr>
 
