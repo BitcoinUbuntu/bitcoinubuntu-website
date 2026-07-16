@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Factor Authentication: A Practical Guide</title>
+<meta name="description" content="Your password is probably not enough. Here's how to add a second layer of protection to your accounts, and why it matters.">
+<link rel="canonical" href="https://bitcoinubuntu.org/articles/2fa-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two-Factor Authentication: A Practical Guide">
+<meta property="og:description" content="Your password is probably not enough. Here's how to add a second layer of protection to your accounts, and why it matters.">
+<meta property="og:url" content="https://bitcoinubuntu.org/articles/2fa-guide.html">
+<meta property="og:image" content="https://bitcoinubuntu.org/assets/images/profile-icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../assets/images/logo.png">
+<style>
+  :root{
+    --bg:#0d1117; --card:#21262d; --card2:#161b22; --line:#30363d; --line2:#161b22;
+    --ink:#f0f6fc; --ink2:#8b949e; --ink3:#6e7681; --ink4:#484f58;
+    --claim:#f85149; --real:#3fb950; --accent:#f7931a; --link:#58a6ff;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.65;font-size:18px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 24px 96px}
+  a{color:var(--link);text-decoration:none}
+  a:hover{color:var(--accent)}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 16px}
+  h1{font-size:38px;line-height:1.16;letter-spacing:-.02em;font-weight:680;margin:0 0 8px}
+  .subtitle{font-size:20px;color:var(--accent);font-weight:600;margin:0 0 18px;letter-spacing:-.01em}
+  .standfirst{font-size:20px;line-height:1.55;color:var(--ink2);margin:0 0 26px}
+  .byline{font-size:14.5px;color:var(--ink3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:16px 0;margin:0 0 40px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:baseline}
+  .byline b{color:var(--ink2);font-weight:600}
+  h2{font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);
+    font-weight:650;margin:56px 0 6px}
+  h2 .n{color:var(--ink4);margin-right:10px}
+  h3{font-size:27px;line-height:1.25;letter-spacing:-.01em;font-weight:650;margin:52px 0 18px}
+  p{margin:0 0 20px}
+  .lead{font-size:19px}
+  strong{color:var(--ink);font-weight:650}
+  em{color:var(--ink)}
+  ol,ul{margin:0 0 20px;padding-left:24px}
+  li{margin:0 0 10px}
+  .callout{background:var(--card2);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;margin:26px 0;font-size:16.5px;line-height:1.55}
+  .callout .h{color:var(--accent);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
+  .callout b{color:var(--accent)}
+  hr{border:0;border-top:1px solid var(--line);margin:52px 0}
+  /* tables */
+  figure{margin:34px 0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  figcaption{font-size:13.5px;color:var(--ink3);padding:14px 20px 18px;line-height:1.5}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  th,td{text-align:left;padding:12px 16px;font-size:14.5px}
+  thead th{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);
+    font-weight:600;background:var(--card2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  tbody tr+tr{border-top:1px solid var(--line2)}
+  tbody td:first-child{font-weight:600}
+  @media (max-width:640px){
+    table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table th,table td{white-space:nowrap}
+    body{font-size:17px}
+    h1{font-size:30px}
+    .subtitle{font-size:17px}
+    h3{font-size:23px}
+    th,td{padding:10px 11px;font-size:13px}
+  }
+  .foot{font-size:14px;color:var(--ink3);line-height:1.6}.foot p{margin:0 0 12px}
+  .foot h3{font-size:20px;color:var(--ink);margin:0 0 12px}
+  .srcs{font-size:14px;color:var(--ink3);line-height:1.6}
+  .srcs a{color:var(--ink2)}
+  /* ===== Site running header/footer (matches bitcoinubuntu.org) ===== */
+  :root{
+    --bg-primary:#0d1117; --bg-secondary:#161b22; --bg-card:#21262d;
+    --text-primary:#f0f6fc; --text-secondary:#8b949e; --accent-orange:#f7931a;
+    --site-border:#30363d;
+  }
+  body{padding-top:72px}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,17,23,.9);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--site-border)}
+  .nav-container{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:8px;border-bottom:none}
+  .nav-logo img{height:40px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}
+  .nav-links a{color:var(--text-secondary);font-weight:500;font-size:.95rem;text-decoration:none;border-bottom:none;transition:color 150ms ease}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent-orange)}
+  .nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:var(--text-primary);transition:150ms ease}
+  .footer{background:var(--bg-secondary);border-top:1px solid var(--site-border);padding:48px 0;margin-top:64px}
+  .footer-container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .footer-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .footer-links{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+  .footer-links a{color:var(--text-secondary);font-size:.9rem;text-decoration:none;border-bottom:none}
+  .footer-links a:hover{color:var(--accent-orange)}
+  .footer-social{display:flex;gap:16px}
+  .footer-social a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border-radius:6px;color:var(--text-secondary);border-bottom:none;transition:all 150ms ease}
+  .footer-social a:hover{background:var(--accent-orange);color:var(--bg-primary)}
+  .footer-copy{width:100%;text-align:center;padding-top:24px;margin:24px 0 0;border-top:1px solid var(--site-border);color:var(--text-secondary);font-size:.85rem}
+  .footer-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+  .footer-toggle span{width:24px;height:2px;background:var(--text-primary);transition:150ms ease}
+  @media (max-width:768px){
+    .nav-toggle{display:flex}
+    .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg-secondary);
+      border-bottom:1px solid var(--site-border);padding:24px;gap:16px;display:none}
+    .nav-links.active{display:flex}
+    .footer-toggle{display:flex;order:-1}
+    .footer-content{flex-direction:column;text-align:center;position:relative}
+    .footer-links{flex-direction:column;gap:8px;padding:16px 0;display:none;width:100%}
+    .footer-links.active{display:flex}
+    .footer-social{justify-content:center}
+  }
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/images/logo.png" alt="Bitcoin Ubuntu">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="../index.html#learn">Learn</a></li>
+        <li><a href="../index.html#merchants">Merchants</a></li>
+        <li><a href="../index.html#community">Community</a></li>
+        <li><a href="../index.html#powbot">PoWBoT</a></li>
+        <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<article class="wrap">
+
+  <p class="kicker">Security · practical guide</p>
+  <h1>Two-Factor Authentication</h1>
+  <p class="subtitle">A Practical Guide</p>
+  <p class="standfirst"><em>Your password is probably not enough. Here's how to add a second layer of protection to your accounts, and why it matters.</em></p>
+  <div class="byline">
+    <span>By G. Jooste <a href="https://x.com/bitcoinubuntu">@bitcoinubuntu</a></span>
+    <span>16 July 2026</span>
+  </div>
+
+  <p>Someone you know has probably had an account stolen. Maybe it was a Telegram group admin who suddenly started posting scam links. Maybe an email account got hijacked and used to reset passwords elsewhere.</p>
+
+  <p>The attack routes vary. For most services, an attacker needs your password – leaked in a breach, guessed, or phished. For Telegram and WhatsApp, they need control of your phone number (a SIM swap can do it), or access to a device where you're already logged in.</p>
+
+  <p>Either way, the fix is the same: require a second proof of identity before letting anyone in.</p>
+
+  <h3>What two-factor authentication actually does</h3>
+
+  <p>When you log in with 2FA enabled, the service asks for your password as usual. But then it asks for a second code – one that changes every thirty seconds and only exists on a device you control.</p>
+
+  <p>Even if an attacker has your password, they can't get in without also having your phone in their hand. That's a much harder thing to steal, especially remotely.</p>
+
+  <p>The "two factors" are:</p>
+  <ol>
+    <li><strong>Something you know</strong> – your password</li>
+    <li><strong>Something you have</strong> – your phone, generating time-based codes</li>
+  </ol>
+
+  <p>Both are required. Compromise one, and the other still protects you.</p>
+
+  <h3>Why SMS codes aren't ideal</h3>
+
+  <p>Many services offer to send a code via SMS. It's better than nothing, but it has a serious weakness: SIM swap attacks.</p>
+
+  <p>An attacker calls your mobile provider, convinces them to transfer your number to a new SIM, and suddenly your codes are landing on their phone instead of yours. It happens more than you'd think, and in some regions it's disturbingly easy to pull off.</p>
+
+  <p>SMS also fails when you're abroad, out of signal, or if your phone is lost. An authenticator app works offline and stays with your device, not your phone number.</p>
+
+  <h3>Authenticator apps</h3>
+
+  <p>An authenticator app generates time-based one-time passwords (TOTPs) directly on your phone. The codes refresh every thirty seconds and work even without an internet connection.</p>
+
+  <p>When you set up 2FA on a service, it shows you a QR code. You scan it with your authenticator app, and from then on your app generates valid codes for that account.</p>
+
+  <p>Here's how the main options compare:</p>
+
+  <figure>
+    <table>
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Platform</th>
+          <th>Open Source</th>
+          <th>Backup</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a></td>
+          <td>iOS, Android</td>
+          <td>No</td>
+          <td>Syncs to Google account</td>
+          <td>Widely known, easy to set up</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.microsoft.com/security/mobile-authenticator-app" target="_blank">Microsoft Authenticator</a></td>
+          <td>iOS, Android</td>
+          <td>No</td>
+          <td>Syncs to Microsoft account</td>
+          <td>Passwordless sign-in for Microsoft accounts</td>
+        </tr>
+        <tr>
+          <td><a href="https://2fas.com/" target="_blank">2FAS</a></td>
+          <td>iOS, Android</td>
+          <td>Yes</td>
+          <td>Optional encrypted backup to your own iCloud/Google Drive</td>
+          <td>Browser extension auto-fills codes</td>
+        </tr>
+        <tr>
+          <td><a href="https://getaegis.app/" target="_blank">Aegis</a></td>
+          <td>Android only</td>
+          <td>Yes</td>
+          <td>Local encrypted export (manual)</td>
+          <td>Fully offline, no account required</td>
+        </tr>
+        <tr>
+          <td><a href="https://ente.io/auth/" target="_blank">Ente Auth</a></td>
+          <td>iOS, Android, Desktop, Web</td>
+          <td>Yes</td>
+          <td>End-to-end encrypted cloud sync</td>
+          <td>Works across all your devices</td>
+        </tr>
+        <tr>
+          <td><a href="https://bitwarden.com/products/authenticator/" target="_blank">Bitwarden Authenticator</a></td>
+          <td>iOS, Android</td>
+          <td>Yes</td>
+          <td>Syncs with Bitwarden vault (optional)</td>
+          <td>Great if you already use Bitwarden</td>
+        </tr>
+      </tbody>
+    </table>
+  </figure>
+
+  <p><strong>Which to choose?</strong></p>
+
+  <p>If you just want something familiar and don't mind Google handling sync, <strong>Google Authenticator</strong> works fine.</p>
+
+  <p>If you're in a Microsoft environment (Outlook, Office 365, work accounts), <strong>Microsoft Authenticator</strong> is a natural fit – it also supports passwordless sign-in for Microsoft services.</p>
+
+  <p>If you want open-source software with a bit more control over your backups, <strong>2FAS</strong> is a good middle ground – it's cross-platform and has a handy browser extension.</p>
+
+  <p>If you're on Android and want maximum privacy with no cloud involvement at all, <strong>Aegis</strong> is the pick. You manage your own encrypted backups.</p>
+
+  <p>If you need your codes on multiple devices including a computer, <strong>Ente Auth</strong> syncs everywhere with end-to-end encryption. The trade-off: your secrets live on Ente's servers (encrypted, and they've passed independent security audits), and if you forget your Ente password there's no recovery. It's a smaller company than Google or Microsoft, so you're trusting they'll stick around.</p>
+
+  <p>If you already use <strong>Bitwarden</strong> as your password manager, their authenticator integrates nicely with your existing vault.</p>
+
+  <p>Any of these is vastly better than no 2FA at all. Pick one that you'll actually use.</p>
+
+  <h3>Before you enable 2FA: check who's already in</h3>
+
+  <p>If you're setting up 2FA because something feels off, check your active sessions first. In Telegram, go to Settings > Devices to see everywhere you're logged in. If there's a session you don't recognise – a device you don't own, a location you've never been – terminate it immediately.</p>
+
+  <p>Most services have an equivalent: "Active sessions", "Signed-in devices", or "Where you're logged in". Clear out anything suspicious, then enable 2FA to prevent new unwanted logins.</p>
+
+  <h3>Setting it up</h3>
+
+  <p>The process is nearly identical across services. Here's the general pattern:</p>
+
+  <ol>
+    <li><strong>Find the security settings.</strong> Look for "Security", "Privacy", or "Account" in the app or website settings. The 2FA option is usually called "Two-Step Verification" or "Two-Factor Authentication".</li>
+    <li><strong>Choose authenticator app.</strong> When prompted for a method, select "Authenticator app" rather than SMS.</li>
+    <li><strong>Scan the QR code.</strong> The service displays a QR code. Open your authenticator app, tap the add button (usually a "+" icon), and scan it.</li>
+    <li><strong>Enter the code to confirm.</strong> Your app immediately starts generating six-digit codes. Enter the current one to prove the link works.</li>
+    <li><strong>Save your backup codes.</strong> This is critical – see the next section.</li>
+  </ol>
+
+  <p>That's it. Next time you log in, you'll enter your password, then open your authenticator app and type in the current code.</p>
+
+  <h3>Backup codes: don't skip this</h3>
+
+  <p>When you enable 2FA, most services give you a set of one-time backup codes. These are your emergency keys. If you lose your phone, they're the only way back into your account.</p>
+
+  <p><strong>Write them down on paper</strong> and store them somewhere safe – not on the phone you're using for 2FA. A fireproof safe, a locked drawer, wherever you keep important documents.</p>
+
+  <p>Some people store them in a password manager. That works too, as long as the password manager itself isn't locked behind the same phone you just lost.</p>
+
+  <p>If you skip this step and then lose your phone, you may be permanently locked out. Recovery processes exist but they're slow, frustrating, and sometimes impossible. Save the backup codes.</p>
+
+  <h3>What to secure first</h3>
+
+  <p>Not all accounts are equally important. Start with the ones that could cause the most damage if compromised:</p>
+
+  <ol>
+    <li><strong>Email</strong> – This is the master key. Most password resets go through email. If an attacker controls your inbox, they can reset their way into everything else.</li>
+    <li><strong>Messaging apps</strong> (Telegram, WhatsApp, Signal) – Group admins are high-value targets for scammers. Protect yourself and your communities.</li>
+    <li><strong>Exchanges and banking</strong> – Anywhere money moves. Most exchanges have 2FA built in and some require it.</li>
+    <li><strong>Cloud storage</strong> (Google Drive, iCloud, Dropbox) – Photos, documents, backups. More access than people realise.</li>
+    <li><strong>Social media</strong> – Account takeovers spread scams to your contacts under your name.</li>
+  </ol>
+
+  <p>Work down the list over a few days if you need to. Each account you secure is one less way in for an attacker.</p>
+
+  <hr>
+
+  <p>Two-factor authentication isn't complicated, and it doesn't take long to set up. The few minutes you spend now could save you from a much worse few days later.</p>
+
+  <p>Pick an app. Start with your email. Work through the list. And save those backup codes.</p>
+
+  <hr>
+
+  <div class="srcs">
+    <p><strong>Further reading:</strong></p>
+    <p>
+      <a href="https://2fas.com/" target="_blank">2FAS</a> ·
+      <a href="https://getaegis.app/" target="_blank">Aegis</a> ·
+      <a href="https://bitwarden.com/products/authenticator/" target="_blank">Bitwarden Authenticator</a> ·
+      <a href="https://ente.io/auth/" target="_blank">Ente Auth</a> ·
+      <a href="https://support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a> ·
+      <a href="https://www.microsoft.com/security/mobile-authenticator-app" target="_blank">Microsoft Authenticator</a>
+    </p>
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <button class="footer-toggle" aria-label="Toggle footer navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="footer-links">
+        <li><a href="../index.html#learn">Learn</a></li>
+        <li><a href="../index.html#merchants">Merchants</a></li>
+        <li><a href="../index.html#community">Community</a></li>
+        <li><a href="../index.html#powbot">PoWBoT</a></li>
+        <li><a href="../index.html#support">Support</a></li>
+        <li><a href="../index.html#about">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://x.com/BitcoinUbuntu" target="_blank" title="X (Twitter)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://github.com/BitcoinUbuntu" target="_blank" title="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@BitcoinUbuntu" target="_blank" title="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://wa.me/27713389109" target="_blank" title="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Bitcoin Ubuntu | Built by Lab21</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function wire(tSel,lSel){var t=document.querySelector(tSel),l=document.querySelector(lSel);
+    if(!t||!l)return;t.addEventListener('click',function(){l.classList.toggle('active');});
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('active');});});}
+  wire('.nav-toggle','.nav-links');wire('.footer-toggle','.footer-links');
+})();
+</script>
+</body>
+</html>
