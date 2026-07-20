@@ -192,7 +192,7 @@
 
   <p>No method is shown anywhere. We rebuilt its tables every realistic way we could come up with. Section 02 shows the only model that fit, along with what that reveals about the second fifty years. We'll grant the author his own stale rates, the growth his own tables imply and every generous rounding, and show the numbers still don't hold up to the barest scrutiny.</p>
 
-  <p>The mistakes are at least instructive, so we'll explain the mechanics as we go (the halving, a miner's share of the network, pool and transaction fees, stale shares) and let the errors show themselves. His article gets the trivia right and the conclusions wrong.</p>
+  <p>The mistakes are at least instructive, so we'll explain the mechanics as we go (the halving, a miner's share of the network, pool and transaction fees, stale shares) and let the errors show themselves. His article gets the background right and the conclusions wrong.</p>
 
   <p>Every one of our figures comes from a single share calculation, using stated assumptions that vary by figure and are set out in full at the end. We've used inputs anyone can check: the <strong>device's rated hashrate</strong>, the <strong>current network hashrate</strong>, and <strong>Bitcoin's issuance schedule</strong>. Where we had to assume something, we've used whatever is most generous to the author's own conclusions, so if anything the corrections here are on the conservative side.</p>
 
@@ -336,11 +336,11 @@
 
   <p>The bigger problem here is the strange assumption underlying the whole comparison: that a "legacy" pool stays legacy for a hundred years. It won't. The low-latency, local-template tooling the article is promoting is open source and simple to adopt, and any pool actually losing a quarter of a per cent to stale work would close that gap quickly, because nothing is stopping it. It's an invented disadvantage stacked on top of the doubling: a hundred-year comparison in which no competitor ever upgrades.</p>
 
-    <p>There is also one comparison the article's own logic demands but never makes. The stacks it favours earn part of their edge by filtering "spam", which means declining the fees those transactions pay. In the fourteen months to February 2024, inscriptions alone paid miners more than <strong>6,000 BTC</strong>, roughly one and a half per cent of everything miners earned in that time. That's six times the entire stale-rate penalty the article hangs on its worst-ranked pools. He presents us a ranking based on lost revenue but doesn't factor in the biggest loss to his favoured choice.</p>
+    <p>There is also one comparison the article's own logic demands but never makes. The stacks it favours earn part of their edge by filtering "spam", which means declining the fees those transactions pay. In the fourteen months to February 2024, inscriptions alone paid miners more than <strong>6,000 BTC</strong>, roughly one and a half per cent of everything miners earned in that time. That's six times the entire stale-rate penalty the article hangs on its worst-ranked pools. He presents us with a ranking based on lost revenue but doesn't factor in the biggest loss to his favoured choice.</p>
 
   <div class="callout">
     <div class="h">Two more problems with the "compounding" story</div>
-    <p style="margin:0 0 8px">First, a flat percentage loss doesn't compound as the author would have us believe. It is a flat 0.25% of whatever is earned; nothing about it snowballs.</p>
+    <p style="margin:0 0 8px">First, a flat percentage loss doesn't compound the way the article claims. It is a flat 0.25% of whatever is earned; nothing about it snowballs.</p>
     <p style="margin:0">Second, if sub-1% edges were really that decisive, the article would have to admit that the one genuinely large lever it mentions, Ocean's very own pool fee, dwarfs them all.</p>
   </div>
 
@@ -367,7 +367,7 @@
 
   <p>More to the point though, Bitcoin already has a mechanism for junk, and it's the same one the author seems to revere. Block space is scarce and fixed. As adoption grows and that space is contested, we can expect that people paying real money to move real value will outbid low-value data for it. The fee market <em>is</em> the filter, and it makes "spam" uneconomic to sustain. The inscription wave of 2023 and the <a href="https://blockeden.xyz/blog/2026/01/26/runes-protocol-evolution-bitcoin-tokenization-one-year-later/">Runes craze that followed the 2024 halving</a> both all but <a href="https://www.theblock.co/post/358372/bitcoin-transactions-hit-18-month-low-as-runes-and-ordinals-hype-fades">burned themselves out</a>, no rule change required.</p>
 
-  <p>A transaction fee is a miner's <em>income</em>, not its cost. A miner who screens valid transactions out of its blocks simply earns <em>less</em> than one who leaves them in, and the fees it declines are picked up by the next operator who isn't so fussy. When block space is contested, which is exactly the future the article projects, filtering valid transactions is a standing decision to earn <em>less</em> than the competition. Somehow the author scores filtering as an advantage in his rankings, and the cost of it never appears in his projections.</p>
+  <p>A transaction fee is a miner's <em>income</em>, not its cost. A miner who screens valid transactions out of its blocks simply earns <em>less</em> than one who leaves them in, and the fees it declines are picked up by the next operator who isn't so fussy. When block space is contested, which is exactly the future the article projects, filtering valid transactions is a standing decision to earn <em>less</em> than the competition. The article scores filtering as an advantage in its rankings, and the cost of it never appears in its projections.</p>
 
   <figure>
     <div class="fig-h"><div class="t">Fees overtake the subsidy</div>
@@ -384,6 +384,10 @@
     </table>
     <figcaption>No fee growth is assumed anywhere in this table: even if fees never rise above today's level, the halving alone makes them the majority of a miner's pay by the mid-2050s and nearly all of it by the article's own fifty-year mark. Should fees rise instead, as one might expect, the earlier decades change dramatically and the flip comes far sooner. Either way, this is the income the article's recommended filters cut into.</figcaption>
   </figure>
+
+  <p>Filtering also has a cost of its own, and it shows up in the article's favourite column. A filter is mempool policy: the node declines to hold certain valid transactions while they wait. It cannot decline the block that includes them. A node normally checks transactions as they arrive and remembers the result, so by the time a block comes in, most of its contents are already verified. A filtering node turned those transactions away at the door and kept nothing, so when the block arrives it has to fetch what its mempool lacks and check it all from scratch, and only then can its miners start on the next block. That gap is latency, and latency is stale work, the very quantity the article ranks stacks by. The filter never even spares the node the checking, since consensus obliges it to validate whatever a block contains. It just moves that work to the worst moment available, after the block arrives, while less fussy competitors are already hashing.</p>
+
+  <h3>The soft fork is another matter</h3>
 
   <p>The article name-drops <a href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki">BIP-110</a> in the same breath as Stratum V2, as though the two belonged to one modernisation effort. They don't. Stratum V2 is a transport protocol, it changes how miners talk to pools. BIP-110 is an extremely contentious soft fork to Bitcoin's consensus rules.</p>
 
