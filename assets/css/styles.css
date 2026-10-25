@@ -58,6 +58,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* links from other pages (the articles, the Campus) land below the fixed header */
+    scroll-padding-top: 77px;
     overflow-x: hidden;
 }
 
@@ -111,6 +113,41 @@ a {
 
 a:hover {
     color: var(--accent-orange);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-orange);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.skip-link {
+    position: absolute;
+    left: var(--spacing-md);
+    top: -100px;
+    z-index: 1001;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--accent-orange);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+    top: var(--spacing-sm);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .mono {
@@ -258,6 +295,10 @@ a:hover {
 .nav-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
     gap: 4px;
     background: none;
     border: none;
@@ -285,13 +326,18 @@ a:hover {
         flex-direction: column;
         background: var(--bg-secondary);
         border-bottom: 1px solid var(--border);
-        padding: var(--spacing-lg);
-        gap: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-lg);
+        gap: var(--spacing-xs);
         display: none;
     }
 
     .nav-links.active {
         display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
     }
 }
 
@@ -339,6 +385,7 @@ a:hover {
 .hero-logo {
     max-width: 400px;
     width: 100%;
+    height: auto;
     margin-bottom: var(--spacing-lg);
 }
 
@@ -359,12 +406,15 @@ a:hover {
     margin-right: auto;
 }
 
+.hero-title {
+    margin: 0;
+}
+
 .hero-stats {
     display: flex;
     justify-content: center;
     gap: var(--spacing-xl);
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-xl);
 }
 
 .hero-stat {
@@ -391,6 +441,7 @@ a:hover {
     justify-content: center;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+    margin-bottom: var(--spacing-xl);
 }
 
 /* ========================================
@@ -452,7 +503,7 @@ a:hover {
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: var(--spacing-lg);
 }
 
@@ -474,6 +525,47 @@ a:hover {
 .feature-icon {
     font-size: 3rem;
     margin-bottom: var(--spacing-md);
+}
+
+/* Bitcoin Ubuntu Campus feature, in the Learn section */
+.campus-feature {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    border-color: var(--accent-orange);
+    background: linear-gradient(135deg, rgba(247, 147, 26, 0.12), rgba(247, 147, 26, 0.02));
+}
+
+.campus-feature-text {
+    max-width: 640px;
+}
+
+.campus-feature-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-sm);
+}
+
+.campus-feature h3 {
+    font-size: 1.6rem;
+}
+
+.campus-feature .btn {
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .campus-feature {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--spacing-lg);
+    }
 }
 
 /* Stat cards */
@@ -637,6 +729,7 @@ a:hover {
 
 .footer-links {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-lg);
     list-style: none;
 }
@@ -685,6 +778,10 @@ a:hover {
 .footer-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
     gap: 4px;
     background: none;
     border: none;

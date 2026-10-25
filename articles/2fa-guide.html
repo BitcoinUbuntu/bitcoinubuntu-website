@@ -121,14 +121,15 @@
     <a href="../index.html" class="nav-logo">
       <img src="../assets/images/logo.png" alt="Bitcoin Ubuntu">
     </a>
-    <button class="nav-toggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
         <li><a href="../index.html#learn">Learn</a></li>
+        <li><a href="https://campus.bitcoinubuntu.org/">Campus</a></li>
         <li><a href="../index.html#merchants">Merchants</a></li>
-        <li><a href="../index.html#community">Community</a></li>
         <li><a href="../index.html#powbot">PoWBoT</a></li>
+        <li><a href="../index.html#community">Community</a></li>
         <li><a href="../index.html#about">About</a></li>
     </ul>
   </div>
@@ -323,15 +324,15 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-content">
-      <button class="footer-toggle" aria-label="Toggle footer navigation">
+      <button class="footer-toggle" type="button" aria-label="Site links" aria-expanded="false" aria-controls="footer-links">
         <span></span><span></span><span></span>
       </button>
-      <ul class="footer-links">
+      <ul class="footer-links" id="footer-links">
         <li><a href="../index.html#learn">Learn</a></li>
+        <li><a href="https://campus.bitcoinubuntu.org/">Campus</a></li>
         <li><a href="../index.html#merchants">Merchants</a></li>
-        <li><a href="../index.html#community">Community</a></li>
         <li><a href="../index.html#powbot">PoWBoT</a></li>
-        <li><a href="../index.html#support">Support</a></li>
+        <li><a href="../index.html#community">Community</a></li>
         <li><a href="../index.html#about">About</a></li>
       </ul>
       <div class="footer-social">
@@ -356,8 +357,11 @@
 <script>
 (function(){
   function wire(tSel,lSel){var t=document.querySelector(tSel),l=document.querySelector(lSel);
-    if(!t||!l)return;t.addEventListener('click',function(){l.classList.toggle('active');});
-    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('active');});});}
+    if(!t||!l)return;
+    function set(on){l.classList.toggle('active',on);t.setAttribute('aria-expanded',String(on));}
+    t.addEventListener('click',function(){set(!l.classList.contains('active'));});
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&l.classList.contains('active')){set(false);if(t.offsetParent)t.focus();}});}
   wire('.nav-toggle','.nav-links');wire('.footer-toggle','.footer-links');
 })();
 </script>

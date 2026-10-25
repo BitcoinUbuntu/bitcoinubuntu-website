@@ -138,14 +138,18 @@ function initMobileNav() {
 
     if (!toggle || !links) return;
 
+    toggle.setAttribute('aria-expanded', 'false');
+
     toggle.addEventListener('click', () => {
-        links.classList.toggle('active');
+        const open = links.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', String(open));
     });
 
     // Close menu when clicking a link
     links.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             links.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
         });
     });
 }
@@ -156,14 +160,18 @@ function initMobileFooter() {
 
     if (!toggle || !links) return;
 
+    toggle.setAttribute('aria-expanded', 'false');
+
     toggle.addEventListener('click', () => {
-        links.classList.toggle('active');
+        const open = links.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', String(open));
     });
 
     // Close menu when clicking a link
     links.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             links.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
         });
     });
 }
@@ -173,19 +181,38 @@ function initMobileFooter() {
 // ========================================
 
 function initSmoothScroll() {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        const href = anchor.getAttribute('href');
+        // "#main" is the skip link: let the browser move focus there
+        if (href === '#' || href === '#main') return;
         anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(href);
+            if (!target) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const navHeight = document.querySelector('.nav')?.offsetHeight || 0;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            const navHeight = document.querySelector('.nav')?.offsetHeight || 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            window.scrollTo({
+                top: targetPosition,
+                behavior: reduceMotion.matches ? 'auto' : 'smooth'
+            });
+            history.pushState(null, '', href);
+        });
+    });
+}
+
+// Escape closes an open header or footer menu and returns focus to its button
+function initMenuEscape() {
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        [['.nav-toggle', '.nav-links'], ['.footer-toggle', '.footer-links']].forEach(([button, list]) => {
+            const toggle = document.querySelector(button);
+            const links = document.querySelector(list);
+            if (!toggle || !links || !links.classList.contains('active')) return;
+            links.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+            if (toggle.offsetParent) toggle.focus();
         });
     });
 }
@@ -214,6 +241,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Mobile footer
     initMobileFooter();
+    initMenuEscape();
 
     // Smooth scroll
     initSmoothScroll();
