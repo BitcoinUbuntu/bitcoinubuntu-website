@@ -418,7 +418,15 @@ button:focus-visible {
 }
 
 .hero-stat {
+    display: block;
     text-align: center;
+    color: inherit;
+}
+
+/* Each stat links to the section behind it */
+.hero-stat:hover .hero-stat-label,
+.hero-stat:focus-visible .hero-stat-label {
+    color: var(--accent-orange);
 }
 
 .hero-stat-value {
